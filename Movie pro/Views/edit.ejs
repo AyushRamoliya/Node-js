@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<style>
+ 
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    animation: backgroundFade 5s infinite alternate ease-in-out;
+    color: #333;
+    overflow: hidden;
+}
+
+
+
+form {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    animation: fadeIn 1s ease-in-out;
+    transform: scale(1);
+    transition: transform 0.4s ease-in-out;
+}
+
+form:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form h6 {
+    font-size: 18px;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+form h6:hover {
+    color: #2575fc;
+}
+
+form input[type="text"],
+form input[type="file"] {
+    width: 80%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    background-color: #f9f9f9;
+}
+
+form input[type="text"]:hover,
+form input[type="file"]:hover {
+    border-color: #6a11cb;
+}
+
+form input[type="text"]:focus,
+form input[type="file"]:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+}
+
+form img {
+    margin-top: 15px;
+    border-radius: 10px;
+    max-width: 120px;
+    border: 2px solid #ddd;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, border-color 0.3s ease;
+}
+
+form img:hover {
+    transform: scale(1.1);
+    border-color: #3498db;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+form button {
+    background: linear-gradient(45deg, #34d058, #1e90ff);
+    color: white;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    text-align: center;
+}
+
+
+form button:hover {
+    background: linear-gradient(45deg, #4caf50, #3498db);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+form button:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    form {
+        padding: 30px;
+    }
+
+    form button {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    form img {
+        max-width: 100px;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    form input,
+    form button {
+        animation: pulse 1.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.02);
+        }
+    }
+}
+
+</style>
+
+<body>
+    <form action="/updateData" method="post" enctype="multipart/form-data">
+        <input hidden type="text" value="<%=data.id%>" name="id" >
+        <h6>Movie Name:</h6>
+        <input type="text" value="<%=data.name%>" placeholder="Enter Movie Name" name="name">
+        <h6>Movie Charecter:</h6>
+        <input  type="text" value="<%=data.auther%>" placeholder="Enter Movie Charecter" name="auther">
+        <h6>Movie Director:</h6>
+        <input type="text" value="<%=data.prize%>" placeholder="Enter Movie Director" name="prize">
+        <h6>Movie Image:</h6>
+        <input type="file" name="image">
+        <img src="<%=data.image%>" alt="hello" width="15%">
+       
+        <button type="submit">updateData</button>
+    </form>
+</body>
+</html>
+
+
+
