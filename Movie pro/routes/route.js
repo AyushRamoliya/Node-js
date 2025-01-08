@@ -5,7 +5,6 @@ const upload = require("../middlewere/multer");
 
 
 route.get("/" , ctl.firstpage);
-route.get("/singleMovie" , ctl.singleMovie);
 route.get("/addMovie" , ctl.addMovie);
 route.post("/addData" , upload, ctl.addData);
 route.get("/deleteData" , upload, ctl.deleteData);
