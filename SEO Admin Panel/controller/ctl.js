@@ -26,23 +26,34 @@ module.exports.logOut= async (req,res)=>{
 }
 
 module.exports.dashboard = (req, res) => {
-    req.cookies.adminData ? res.render("dashboard") : res.redirect("/");
+    req.cookies.adminData ? res.render("dashboard") : res.redirect("/")
 };
 
 module.exports.addAdmin = (req, res) => {
-    req.cookies.adminData ? res.render("addAdmin") : res.redirect("/");
+     req.cookies.adminData ? res.render("addAdmin") : res.redirect("/")
 };
-module.exports.addData = async (req, res) => {
+
+module.exports.viewAdmin = async (req, res) => {
     if (req.cookies.adminData) {
+        await schema.find({})
+        .then((data) => {
+            res.render("viewAdmin", { data });
+        })
+    }
+    else {
+        res.redirect("/")
+    }
+    
+}
+
+module.exports.addData = async (req, res) => {
+    
         req.body.image = req.file.path
         await schema.create(req.body)
             .then((data) => {
                 res.redirect("/addAdmin");
             })
-    }
-    else {
-        res.redirect("/")
-    }
+   
 }
 
 module.exports.deleteAdmin = async (req,res) => {
@@ -51,18 +62,6 @@ module.exports.deleteAdmin = async (req,res) => {
     res.redirect("/viewAdmin");
 }
 
-module.exports.viewAdmin = async (req, res) => {
-    if (req.cookies.adminData) {
-        await schema.find({})
-            .then((data) => {
-                res.render("viewAdmin", { data });
-            })
-    }
-    else {
-        res.redirect("/")
-    }
-
-}
 module.exports.editAdmin = async (req, res) => {
     await schema.findById(req.query.id)
         .then((data) => {
